@@ -19,14 +19,15 @@ export default function RefundPage() {
 
       <main className="relative z-10 mx-auto max-w-3xl px-6 py-24">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <p className="mb-4 text-sm text-muted-foreground">Last updated: December 2024</p>
           <h1 className="mb-8 text-4xl font-semibold tracking-tight">Refund Policy</h1>
 
           <div className="space-y-6 text-muted-foreground">
             <section>
               <h2 className="mb-3 text-lg font-medium text-foreground">Overview</h2>
               <p>
-                KikuAI offers credit-based pricing. Once purchased, credits are non-refundable as they are immediately
-                available for use. However, we understand that situations may arise.
+                KikuAI offers usage-based pricing with top-up balance. Once purchased, balance is non-refundable as it
+                is immediately available for use. However, we understand that situations may arise.
               </p>
             </section>
 
@@ -34,7 +35,7 @@ export default function RefundPage() {
               <h2 className="mb-3 text-lg font-medium text-foreground">Eligibility</h2>
               <p>Refunds may be considered within 7 days of purchase if:</p>
               <ul className="mt-2 list-inside list-disc space-y-1">
-                <li>No credits have been used from the purchased package</li>
+                <li>No balance has been used from the purchased top-up</li>
                 <li>There was a technical issue preventing access to services</li>
                 <li>Duplicate charges occurred due to payment processing errors</li>
               </ul>

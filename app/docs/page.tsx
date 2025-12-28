@@ -1,5 +1,16 @@
 import Link from "next/link"
-import { ArrowLeft, Book, ImageIcon, MessageSquare, EyeOff, RefreshCw, ExternalLink } from "lucide-react"
+import {
+  ArrowLeft,
+  Book,
+  ImageIcon,
+  MessageSquare,
+  EyeOff,
+  RefreshCw,
+  ExternalLink,
+  Key,
+  AlertTriangle,
+  Gauge,
+} from "lucide-react"
 
 const products = [
   {
@@ -26,6 +37,14 @@ const products = [
     icon: RefreshCw,
     href: "/docs/reliapi",
   },
+]
+
+const errorCodes = [
+  { code: "400", name: "Bad Request", description: "Invalid input format" },
+  { code: "401", name: "Unauthorized", description: "Missing or invalid API key" },
+  { code: "403", name: "Forbidden", description: "Insufficient balance" },
+  { code: "429", name: "Too Many Requests", description: "Rate limit exceeded, retry after X seconds" },
+  { code: "500", name: "Internal Error", description: "Contact support" },
 ]
 
 export default function DocsPage() {
@@ -67,9 +86,42 @@ export default function DocsPage() {
           </pre>
         </div>
 
+        {/* Authentication Section */}
+        <div className="mb-12 rounded-2xl border border-border/60 bg-card/30 p-8">
+          <div className="mb-4 flex items-center gap-3">
+            <Key className="h-5 w-5 text-primary" />
+            <h2 className="text-xl font-semibold">Authentication</h2>
+          </div>
+          <div className="space-y-4 text-muted-foreground">
+            <div>
+              <h3 className="mb-2 font-medium text-foreground">Where to find your API key</h3>
+              <p>
+                Your API key is available in the{" "}
+                <Link href="/dashboard" className="text-primary hover:underline">
+                  Dashboard
+                </Link>
+                . Click the eye icon to reveal it, or copy it directly.
+              </p>
+            </div>
+            <div>
+              <h3 className="mb-2 font-medium text-foreground">Regenerating your key</h3>
+              <p>Click "Regenerate API Key" in the Dashboard. This will invalidate your current key immediately.</p>
+            </div>
+            <div>
+              <h3 className="mb-2 font-medium text-foreground">Security best practices</h3>
+              <ul className="mt-2 list-inside list-disc space-y-1">
+                <li>Never expose your API key in client-side code</li>
+                <li>Store keys in environment variables</li>
+                <li>Rotate keys periodically</li>
+                <li>Use separate keys for development and production</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* Product Docs */}
         <h2 className="mb-6 text-xl font-semibold">Product Documentation</h2>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 mb-12">
           {products.map((product) => (
             <Link
               key={product.name}
@@ -88,8 +140,52 @@ export default function DocsPage() {
           ))}
         </div>
 
+        {/* Error Codes */}
+        <div className="mb-12 rounded-2xl border border-border/60 bg-card/30 p-8">
+          <div className="mb-4 flex items-center gap-3">
+            <AlertTriangle className="h-5 w-5 text-primary" />
+            <h2 className="text-xl font-semibold">Error Codes</h2>
+          </div>
+          <div className="overflow-hidden rounded-xl border border-border/40">
+            <table className="w-full text-sm">
+              <thead className="bg-muted/20">
+                <tr>
+                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Code</th>
+                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Name</th>
+                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {errorCodes.map((error, index) => (
+                  <tr key={error.code} className={index !== errorCodes.length - 1 ? "border-b border-border/20" : ""}>
+                    <td className="px-4 py-3 font-mono text-primary">{error.code}</td>
+                    <td className="px-4 py-3 font-medium">{error.name}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{error.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Rate Limits */}
+        <div className="mb-12 rounded-2xl border border-border/60 bg-card/30 p-8">
+          <div className="mb-4 flex items-center gap-3">
+            <Gauge className="h-5 w-5 text-primary" />
+            <h2 className="text-xl font-semibold">Rate Limits</h2>
+          </div>
+          <p className="mb-4 text-muted-foreground">
+            All API endpoints are rate limited to <span className="font-mono text-foreground">100 requests/minute</span>{" "}
+            per API key.
+          </p>
+          <p className="text-muted-foreground">
+            When exceeded, the API returns a <span className="font-mono text-primary">429</span> status code with a{" "}
+            <span className="font-mono">Retry-After</span> header indicating how many seconds to wait before retrying.
+          </p>
+        </div>
+
         {/* API Reference */}
-        <div className="mt-12 rounded-2xl border border-border/60 bg-card/30 p-8">
+        <div className="rounded-2xl border border-border/60 bg-card/30 p-8">
           <h2 className="mb-4 text-xl font-semibold">API Reference</h2>
           <p className="mb-4 text-muted-foreground">Base URL for all API endpoints:</p>
           <code className="rounded-lg bg-muted/30 px-3 py-2 font-mono text-sm">https://api.kikuai.dev/v1</code>

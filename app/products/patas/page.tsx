@@ -27,7 +27,7 @@ export default function PATASPage() {
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20">
             <MessageSquare className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="mb-4 text-4xl font-semibold tracking-tight">Logs → Rules</h1>
+          <h1 className="mb-4 text-4xl font-semibold tracking-tight">PATAS</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             Upload chat logs or message datasets and get AI-generated spam detection rules. PATAS clusters patterns and
             outputs JSON blocking rules ready for production.
@@ -90,15 +90,34 @@ export default function PATASPage() {
           ))}
         </div>
 
+        {/* Specs Section */}
+        <div className="mb-16 rounded-2xl border border-border/60 bg-card/30 p-8">
+          <h2 className="mb-6 text-xl font-semibold">Specifications</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Input Formats</h3>
+              <p className="text-sm">JSONL, CSV, plain text logs</p>
+            </div>
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Output</h3>
+              <p className="text-sm">JSON rules for Discord AutoMod, Slack, custom systems</p>
+            </div>
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">What counts as "message"</h3>
+              <p className="text-sm">One line/object in input file</p>
+            </div>
+          </div>
+        </div>
+
         {/* Pricing */}
         <div className="rounded-2xl border border-border/60 bg-card/30 p-8 text-center">
           <h2 className="mb-2 text-xl font-semibold">Pricing</h2>
           <p className="mb-6 text-muted-foreground">Pay per analysis batch</p>
           <div className="inline-flex items-baseline gap-1">
             <span className="text-4xl font-bold text-primary">$0.10</span>
-            <span className="text-muted-foreground">/ 1000 messages</span>
+            <span className="text-muted-foreground">/ 1,000 messages</span>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">Minimum 100 messages per batch</p>
+          <p className="mt-4 text-sm text-muted-foreground">First 1,000 messages free</p>
           <Button asChild className="mt-6 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/products/patas/demo">Analyze Logs</Link>
           </Button>

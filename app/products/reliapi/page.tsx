@@ -56,7 +56,7 @@ export default function ReliAPIPage() {
                 ReliAPI Response
               </p>
               <div className="space-y-2 font-mono text-xs">
-                <div className="rounded bg-primary/10 px-3 py-2 border border-primary/30 text-primary">CACHE HIT ✓</div>
+                <div className="rounded bg-primary/10 px-3 py-2 border border-primary/30 text-primary">CACHE HIT</div>
                 <div className="rounded bg-muted/30 px-3 py-2 border border-border/30">200 OK (from cache)</div>
                 <div className="text-muted-foreground mt-2">Latency: 12ms</div>
               </div>
@@ -79,15 +79,32 @@ export default function ReliAPIPage() {
           ))}
         </div>
 
+        {/* Specs Section */}
+        <div className="mb-16 rounded-2xl border border-border/60 bg-card/30 p-8">
+          <h2 className="mb-6 text-xl font-semibold">Specifications</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Supported Providers</h3>
+              <p className="text-sm">OpenAI, Anthropic, Cohere, custom endpoints</p>
+            </div>
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Pricing Details</h3>
+              <p className="text-sm">
+                $0.005 per proxied request. Cache hits are free. You pay for the underlying API separately.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Pricing */}
         <div className="rounded-2xl border border-border/60 bg-card/30 p-8 text-center">
           <h2 className="mb-2 text-xl font-semibold">Pricing</h2>
-          <p className="mb-6 text-muted-foreground">Percentage of proxied costs</p>
+          <p className="mb-6 text-muted-foreground">Pay per proxied request</p>
           <div className="inline-flex items-baseline gap-1">
-            <span className="text-4xl font-bold text-primary">1%</span>
-            <span className="text-muted-foreground">of API spend</span>
+            <span className="text-4xl font-bold text-primary">$0.005</span>
+            <span className="text-muted-foreground">/ request</span>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">Minimum $5/month, cache hits are free</p>
+          <p className="mt-4 text-sm text-muted-foreground">Cache hits are free</p>
           <Button asChild className="mt-6 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/products/reliapi/demo">Get Started</Link>
           </Button>

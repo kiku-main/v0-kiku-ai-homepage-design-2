@@ -78,6 +78,21 @@ export default function MaskerPage() {
           ))}
         </div>
 
+        {/* Specs Section */}
+        <div className="mb-16 rounded-2xl border border-border/60 bg-card/30 p-8">
+          <h2 className="mb-6 text-xl font-semibold">Specifications</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Entity Types Detected</h3>
+              <p className="text-sm">Email, Phone, Name, Address, Credit Card, SSN, IP Address, Date of Birth</p>
+            </div>
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Supported Languages</h3>
+              <p className="text-sm">English, Spanish, German, French, + 16 more languages</p>
+            </div>
+          </div>
+        </div>
+
         {/* Pricing */}
         <div className="rounded-2xl border border-border/60 bg-card/30 p-8 text-center">
           <h2 className="mb-2 text-xl font-semibold">Pricing</h2>
@@ -86,7 +101,7 @@ export default function MaskerPage() {
             <span className="text-4xl font-bold text-primary">$0.001</span>
             <span className="text-muted-foreground">/ request</span>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">First 1,000 requests free each month</p>
+          <p className="mt-4 text-sm text-muted-foreground">First 1,000 requests/month free</p>
           <Button asChild className="mt-6 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/products/masker/demo">Try Masker</Link>
           </Button>

@@ -27,7 +27,7 @@ export default function Chart2CSVPage() {
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20">
             <ImageIcon className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="mb-4 text-4xl font-semibold tracking-tight">Chart → CSV</h1>
+          <h1 className="mb-4 text-4xl font-semibold tracking-tight">Chart2CSV</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             Extract structured data from any chart image or PDF. Upload a bar chart, line graph, or pie chart and get
             clean CSV/JSON output in seconds.
@@ -97,7 +97,7 @@ export default function Chart2CSVPage() {
           {[
             { icon: Zap, title: "Fast Processing", desc: "Results in under 5 seconds for most charts" },
             { icon: FileSpreadsheet, title: "Multiple Formats", desc: "Export to CSV, JSON, or Excel" },
-            { icon: CheckCircle2, title: "High Accuracy", desc: "AI-powered extraction with 95%+ accuracy" },
+            { icon: CheckCircle2, title: "High Accuracy", desc: "AI-powered extraction with >90% accuracy" },
           ].map((feature) => (
             <div key={feature.title} className="rounded-xl border border-border/40 bg-card/20 p-6">
               <feature.icon className="mb-3 h-5 w-5 text-primary" />
@@ -105,6 +105,25 @@ export default function Chart2CSVPage() {
               <p className="text-sm text-muted-foreground">{feature.desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Specs Section */}
+        <div className="mb-16 rounded-2xl border border-border/60 bg-card/30 p-8">
+          <h2 className="mb-6 text-xl font-semibold">Specifications</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Supported Inputs</h3>
+              <p className="text-sm">PNG, JPG, JPEG, PDF</p>
+            </div>
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Chart Types</h3>
+              <p className="text-sm">Bar, Line, Pie, Scatter, Area</p>
+            </div>
+            <div>
+              <h3 className="mb-2 text-sm font-medium text-muted-foreground">Output Formats</h3>
+              <p className="text-sm">CSV, JSON, Excel</p>
+            </div>
+          </div>
         </div>
 
         {/* Pricing */}
@@ -115,7 +134,7 @@ export default function Chart2CSVPage() {
             <span className="text-4xl font-bold text-primary">$0.02</span>
             <span className="text-muted-foreground">/ chart</span>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">Bulk discounts available for 1000+ extractions</p>
+          <p className="mt-4 text-sm text-muted-foreground">First 10 charts free</p>
           <Button asChild className="mt-6 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/products/chart2csv/demo">Start Extracting</Link>
           </Button>

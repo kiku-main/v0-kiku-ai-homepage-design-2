@@ -19,6 +19,7 @@ export default function TermsPage() {
 
       <main className="relative z-10 mx-auto max-w-3xl px-6 py-24">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <p className="mb-4 text-sm text-muted-foreground">Last updated: December 2024</p>
           <h1 className="mb-8 text-4xl font-semibold tracking-tight">Terms of Service</h1>
 
           <div className="space-y-6 text-muted-foreground">
@@ -50,9 +51,9 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="mb-3 text-lg font-medium text-foreground">4. Payment and Credits</h2>
+              <h2 className="mb-3 text-lg font-medium text-foreground">4. Payment and Balance</h2>
               <p>
-                Credits are purchased in advance and deducted upon API usage. Credits do not expire. All purchases are
+                Balance is purchased in advance and deducted upon API usage. Balance never expires. All purchases are
                 final unless otherwise specified in our Refund Policy.
               </p>
             </section>

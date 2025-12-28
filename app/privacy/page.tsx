@@ -19,6 +19,7 @@ export default function PrivacyPage() {
 
       <main className="relative z-10 mx-auto max-w-3xl px-6 py-24">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <p className="mb-4 text-sm text-muted-foreground">Last updated: December 2024</p>
           <h1 className="mb-8 text-4xl font-semibold tracking-tight">Privacy Policy</h1>
 
           <div className="space-y-6 text-muted-foreground">

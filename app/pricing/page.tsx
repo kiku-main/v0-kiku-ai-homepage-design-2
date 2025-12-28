@@ -7,28 +7,49 @@ import { Check, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
-const tiers = [
+const topUpOptions = [
   {
-    name: "Starter",
-    price: "$10",
-    credits: "1,000 credits",
-    description: "Perfect for trying out KikuAI",
-    features: ["Chart2CSV access", "PATAS access", "API access", "Email support"],
+    amount: "$10",
+    label: "Get started",
+    description: "Try out the platform",
   },
   {
-    name: "Pro",
-    price: "$50",
-    credits: "6,000 credits",
-    description: "For growing teams and projects",
-    features: ["Everything in Starter", "Priority processing", "Masker included", "ReliAPI included"],
+    amount: "$50",
+    label: "Most popular",
+    description: "For active projects",
     popular: true,
   },
   {
-    name: "Scale",
-    price: "$200",
-    credits: "30,000 credits",
-    description: "For high-volume usage",
-    features: ["Everything in Pro", "Dedicated support", "Custom integrations", "SLA guarantee"],
+    amount: "$200",
+    label: "For teams",
+    description: "High-volume usage",
+  },
+]
+
+const productPricing = [
+  {
+    product: "Chart2CSV",
+    price: "$0.02",
+    unit: "per chart",
+    freeTier: "First 10 free",
+  },
+  {
+    product: "PATAS",
+    price: "$0.10",
+    unit: "per 1,000 messages",
+    freeTier: "First 1,000 messages free",
+  },
+  {
+    product: "Masker",
+    price: "$0.001",
+    unit: "per request",
+    freeTier: "First 1,000 requests/month free",
+  },
+  {
+    product: "ReliAPI",
+    price: "$0.005",
+    unit: "per request",
+    freeTier: "Cache hits free",
   },
 ]
 
@@ -53,21 +74,24 @@ export default function PricingPage() {
           className="mb-16 text-center"
         >
           <h1 className="mb-4 text-4xl font-semibold tracking-tight">Simple, usage-based pricing</h1>
-          <p className="text-lg text-muted-foreground">Buy credits, use them across all products. No subscriptions.</p>
+          <p className="text-lg text-muted-foreground">
+            Top up your balance, pay only for what you use. No subscriptions, no credits to convert.
+          </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {tiers.map((tier, index) => (
+        {/* Top-up Options */}
+        <div className="mb-16 grid gap-6 md:grid-cols-3">
+          {topUpOptions.map((option, index) => (
             <motion.div
-              key={tier.name}
+              key={option.amount}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`relative rounded-xl border bg-card/50 p-6 backdrop-blur-sm ${
-                tier.popular ? "border-primary/50 shadow-lg shadow-primary/5" : "border-border/50"
+                option.popular ? "border-primary/50 shadow-lg shadow-primary/5" : "border-border/50"
               }`}
             >
-              {tier.popular && (
+              {option.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     <Zap className="h-3 w-3" /> Most Popular
@@ -75,45 +99,97 @@ export default function PricingPage() {
                 </div>
               )}
 
-              <div className="mb-6">
-                <h3 className="mb-1 text-lg font-medium">{tier.name}</h3>
-                <p className="text-sm text-muted-foreground">{tier.description}</p>
+              <div className="mb-4">
+                <span className="text-4xl font-semibold">{option.amount}</span>
               </div>
+              <h3 className="mb-1 text-lg font-medium">{option.label}</h3>
+              <p className="mb-6 text-sm text-muted-foreground">{option.description}</p>
 
-              <div className="mb-6">
-                <span className="text-4xl font-semibold">{tier.price}</span>
-                <span className="ml-2 text-muted-foreground">/ {tier.credits}</span>
-              </div>
-
-              <ul className="mb-6 space-y-3">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 text-primary" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <Button asChild className="w-full" variant={tier.popular ? "default" : "outline"}>
-                <Link href="/dashboard">Get Started</Link>
+              <Button asChild className="w-full" variant={option.popular ? "default" : "outline"}>
+                <Link href="/dashboard">Top Up</Link>
               </Button>
             </motion.div>
           ))}
         </div>
 
+        {/* Custom amount */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mb-16 text-center"
+        >
+          <p className="text-muted-foreground">
+            Need more?{" "}
+            <a href="mailto:sales@kikuai.dev" className="text-primary hover:underline">
+              Contact us
+            </a>{" "}
+            for custom amounts and enterprise volume pricing.
+          </p>
+        </motion.div>
+
+        {/* Pricing Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="rounded-2xl border border-border/60 bg-card/30 overflow-hidden"
+        >
+          <div className="border-b border-border/40 bg-muted/10 px-6 py-4">
+            <h2 className="text-lg font-semibold">Product Pricing</h2>
+          </div>
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-border/40 bg-muted/5">
+                <th className="px-6 py-3 text-left text-sm font-medium text-muted-foreground">Product</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-muted-foreground">Price</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-muted-foreground">Unit</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-muted-foreground">Free Tier</th>
+              </tr>
+            </thead>
+            <tbody>
+              {productPricing.map((item, index) => (
+                <tr
+                  key={item.product}
+                  className={index !== productPricing.length - 1 ? "border-b border-border/20" : ""}
+                >
+                  <td className="px-6 py-4 font-medium">{item.product}</td>
+                  <td className="px-6 py-4 text-primary font-mono">{item.price}</td>
+                  <td className="px-6 py-4 text-muted-foreground">{item.unit}</td>
+                  <td className="px-6 py-4">
+                    <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
+                      <Check className="h-3.5 w-3.5 text-primary" />
+                      {item.freeTier}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </motion.div>
+
+        {/* Bottom notes */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-12 text-center text-sm text-muted-foreground"
+          className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-muted-foreground"
         >
-          <p>All plans include API access. Credits never expire.</p>
-          <p className="mt-1">
-            Questions?{" "}
-            <a href="mailto:support@kikuai.dev" className="text-primary hover:underline">
+          <span className="flex items-center gap-2">
+            <Check className="h-4 w-4 text-primary" />
+            Balance never expires
+          </span>
+          <span className="flex items-center gap-2">
+            <Check className="h-4 w-4 text-primary" />
+            All products included — pay for what you use
+          </span>
+          <span className="flex items-center gap-2">
+            <Check className="h-4 w-4 text-primary" />
+            Need enterprise volume?{" "}
+            <a href="mailto:sales@kikuai.dev" className="text-primary hover:underline">
               Contact us
             </a>
-          </p>
+          </span>
         </motion.div>
       </main>
 

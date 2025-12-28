@@ -3,11 +3,24 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Copy, Check, Eye, EyeOff, Plus, CreditCard, BarChart3, Key, Settings } from "lucide-react"
+import {
+  ArrowLeft,
+  Copy,
+  Check,
+  Eye,
+  EyeOff,
+  Plus,
+  CreditCard,
+  BarChart3,
+  Key,
+  Settings,
+  RefreshCw,
+} from "lucide-react"
 
 export default function DashboardPage() {
   const [showKey, setShowKey] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [showRegenerateConfirm, setShowRegenerateConfirm] = useState(false)
   const apiKey = "kiku_sk_1234567890abcdef"
 
   const handleCopy = () => {
@@ -15,6 +28,23 @@ export default function DashboardPage() {
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
+
+  const handleRegenerate = () => {
+    setShowRegenerateConfirm(false)
+    // Handle regeneration
+  }
+
+  // Sample usage data for the last 7 days
+  const usageData = [
+    { day: "Mon", calls: 120 },
+    { day: "Tue", calls: 85 },
+    { day: "Wed", calls: 210 },
+    { day: "Thu", calls: 145 },
+    { day: "Fri", calls: 98 },
+    { day: "Sat", calls: 67 },
+    { day: "Sun", calls: 122 },
+  ]
+  const maxCalls = Math.max(...usageData.map((d) => d.calls))
 
   return (
     <div className="noise-bg grid-bg min-h-screen">
@@ -53,10 +83,9 @@ export default function DashboardPage() {
               <span className="text-sm text-muted-foreground">Balance</span>
             </div>
             <p className="text-3xl font-semibold">$24.50</p>
-            <p className="mt-1 text-sm text-muted-foreground">~1,225 credits remaining</p>
             <Button variant="outline" size="sm" className="mt-4 rounded-xl bg-transparent">
               <Plus className="mr-2 h-4 w-4" />
-              Add Credits
+              Top Up
             </Button>
           </div>
 
@@ -94,6 +123,50 @@ export default function DashboardPage() {
                 {copied ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4" />}
               </Button>
             </div>
+            <div className="mt-3 relative">
+              {showRegenerateConfirm ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">This will invalidate your current key.</span>
+                  <Button variant="destructive" size="sm" className="h-7 rounded-lg text-xs" onClick={handleRegenerate}>
+                    Confirm
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 rounded-lg text-xs"
+                    onClick={() => setShowRegenerateConfirm(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 rounded-lg text-xs text-muted-foreground hover:text-foreground"
+                  onClick={() => setShowRegenerateConfirm(true)}
+                >
+                  <RefreshCw className="mr-1 h-3 w-3" />
+                  Regenerate API Key
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Usage Chart */}
+        <h2 className="mb-4 text-lg font-medium">Usage (Last 7 days)</h2>
+        <div className="mb-8 rounded-2xl border border-border/60 bg-card/30 p-6">
+          <div className="flex h-40 items-end justify-between gap-2">
+            {usageData.map((data) => (
+              <div key={data.day} className="flex flex-1 flex-col items-center gap-2">
+                <div
+                  className="w-full rounded-t bg-primary/80 transition-all hover:bg-primary"
+                  style={{ height: `${(data.calls / maxCalls) * 100}%`, minHeight: "4px" }}
+                />
+                <span className="text-xs text-muted-foreground">{data.day}</span>
+              </div>
+            ))}
           </div>
         </div>
 

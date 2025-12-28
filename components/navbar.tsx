@@ -22,7 +22,9 @@ export function Navbar() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
             <span className="text-sm font-bold text-primary-foreground">K</span>
           </div>
-          <span className="text-lg font-semibold tracking-tight">KikuAI</span>
+          <span className="text-lg font-semibold tracking-tight">
+            Kiku<span className="text-primary">AI</span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -49,13 +51,13 @@ export function Navbar() {
                       href="/products/chart2csv"
                       className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                     >
-                      Chart → CSV
+                      Chart2CSV
                     </Link>
                     <Link
                       href="/products/patas"
                       className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                     >
-                      Logs → Rules
+                      PATAS
                     </Link>
                     <div className="my-2 border-t border-border/40" />
                     <Link
@@ -122,14 +124,14 @@ export function Navbar() {
                 className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Chart → CSV
+                Chart2CSV
               </Link>
               <Link
                 href="/products/patas"
                 className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Logs → Rules
+                PATAS
               </Link>
               <div className="my-2 border-t border-border/40" />
               <Link
