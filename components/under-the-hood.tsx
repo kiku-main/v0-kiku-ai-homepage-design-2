@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Shield, RefreshCw, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function UnderTheHood() {
   return (
@@ -44,13 +45,21 @@ export function UnderTheHood() {
               <span className="rounded bg-primary/20 px-1.5 py-0.5 text-primary">[EMAIL]</span>
             </div>
 
-            <Link
-              href="/docs/masker"
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
-            >
-              Docs
-              <ArrowRight className="h-3 w-3" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Button asChild size="sm" className="h-8 rounded-lg text-xs">
+                <Link href="/products/masker">
+                  Try demo
+                  <ArrowRight className="ml-1 h-3 w-3" />
+                </Link>
+              </Button>
+              <Link
+                href="/docs/masker"
+                className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                Docs
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
           </motion.div>
 
           {/* ReliAPI Tile */}
@@ -79,13 +88,21 @@ export function UnderTheHood() {
               <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-emerald-400">CACHE HIT</span>
             </div>
 
-            <Link
-              href="/docs/reliapi"
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
-            >
-              Docs
-              <ArrowRight className="h-3 w-3" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Button asChild size="sm" className="h-8 rounded-lg text-xs">
+                <Link href="/products/reliapi">
+                  Try demo
+                  <ArrowRight className="ml-1 h-3 w-3" />
+                </Link>
+              </Button>
+              <Link
+                href="/docs/reliapi"
+                className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                Docs
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </motion.div>

@@ -15,12 +15,14 @@ import {
   Key,
   Settings,
   RefreshCw,
+  History,
 } from "lucide-react"
 
 export default function DashboardPage() {
   const [showKey, setShowKey] = useState(false)
   const [copied, setCopied] = useState(false)
   const [showRegenerateConfirm, setShowRegenerateConfirm] = useState(false)
+  const [showRevokeConfirm, setShowRevokeConfirm] = useState<string | null>(null)
   const apiKey = "kiku_sk_1234567890abcdef"
 
   const handleCopy = () => {
@@ -34,6 +36,11 @@ export default function DashboardPage() {
     // Handle regeneration
   }
 
+  const handleRevoke = (keyId: string) => {
+    setShowRevokeConfirm(null)
+    // Handle revocation
+  }
+
   // Sample usage data for the last 7 days
   const usageData = [
     { day: "Mon", calls: 120 },
@@ -45,6 +52,11 @@ export default function DashboardPage() {
     { day: "Sun", calls: 122 },
   ]
   const maxCalls = Math.max(...usageData.map((d) => d.calls))
+
+  const keyHistory = [
+    { id: "abc", key: "kiku_sk_...abc", created: "Dec 15, 2024", status: "Active" as const },
+    { id: "xyz", key: "kiku_sk_...xyz", created: "Nov 3, 2024", status: "Revoked" as const },
+  ]
 
   return (
     <div className="noise-bg grid-bg min-h-screen">
@@ -152,6 +164,77 @@ export default function DashboardPage() {
               )}
             </div>
           </div>
+        </div>
+
+        {/* API Key History */}
+        <h2 className="mb-4 flex items-center gap-2 text-lg font-medium">
+          <History className="h-5 w-5 text-primary" />
+          Key History
+        </h2>
+        <div className="mb-8 rounded-2xl border border-border/60 bg-card/30 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="border-b border-border/40 bg-muted/10">
+              <tr>
+                <th className="px-4 py-3 text-left font-medium text-muted-foreground">Key</th>
+                <th className="px-4 py-3 text-left font-medium text-muted-foreground">Created</th>
+                <th className="px-4 py-3 text-left font-medium text-muted-foreground">Status</th>
+                <th className="px-4 py-3 text-left font-medium text-muted-foreground">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {keyHistory.map((key) => (
+                <tr key={key.id} className="border-b border-border/20 last:border-0">
+                  <td className="px-4 py-3 font-mono text-xs">{key.key}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{key.created}</td>
+                  <td className="px-4 py-3">
+                    <span
+                      className={`inline-flex rounded-full px-2 py-0.5 text-xs ${
+                        key.status === "Active" ? "bg-primary/10 text-primary" : "bg-muted/30 text-muted-foreground"
+                      }`}
+                    >
+                      {key.status}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    {key.status === "Active" ? (
+                      showRevokeConfirm === key.id ? (
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-muted-foreground">This will permanently disable this key.</span>
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            className="h-6 rounded text-xs"
+                            onClick={() => handleRevoke(key.id)}
+                          >
+                            Confirm
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 rounded text-xs"
+                            onClick={() => setShowRevokeConfirm(null)}
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 rounded text-xs text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                          onClick={() => setShowRevokeConfirm(key.id)}
+                        >
+                          Revoke
+                        </Button>
+                      )
+                    ) : (
+                      <span className="text-xs text-muted-foreground/50">—</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         {/* Usage Chart */}

@@ -10,6 +10,7 @@ import {
   Key,
   AlertTriangle,
   Gauge,
+  Github,
 } from "lucide-react"
 
 const products = [
@@ -53,10 +54,7 @@ export default function DocsPage() {
       {/* Header */}
       <div className="border-b border-border/40 bg-background/50 backdrop-blur-sm">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link href="/" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" />
             Back
           </Link>
@@ -185,7 +183,7 @@ export default function DocsPage() {
         </div>
 
         {/* API Reference */}
-        <div className="rounded-2xl border border-border/60 bg-card/30 p-8">
+        <div className="mb-12 rounded-2xl border border-border/60 bg-card/30 p-8">
           <h2 className="mb-4 text-xl font-semibold">API Reference</h2>
           <p className="mb-4 text-muted-foreground">Base URL for all API endpoints:</p>
           <code className="rounded-lg bg-muted/30 px-3 py-2 font-mono text-sm">https://api.kikuai.dev/v1</code>
@@ -199,6 +197,26 @@ export default function DocsPage() {
               <p className="text-sm text-muted-foreground">All responses are JSON</p>
             </div>
           </div>
+        </div>
+
+        {/* Feedback Section */}
+        <div className="rounded-2xl border border-dashed border-border/60 bg-card/20 p-6 text-center">
+          <p className="text-muted-foreground">
+            Can't find what you need?{" "}
+            <a
+              href="https://github.com/kikuai/docs/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-primary hover:underline"
+            >
+              <Github className="h-3.5 w-3.5" />
+              Open an issue on GitHub
+            </a>{" "}
+            or email{" "}
+            <a href="mailto:support@kikuai.dev" className="text-primary hover:underline">
+              support@kikuai.dev
+            </a>
+          </p>
         </div>
       </div>
     </div>

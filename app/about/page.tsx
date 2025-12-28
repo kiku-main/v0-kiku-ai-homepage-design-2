@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Zap, Shield, Code2, Users } from "lucide-react"
+import { Zap, Shield, Code2, Users, Github } from "lucide-react"
 
 const principles = [
   {
@@ -86,12 +86,23 @@ export default function AboutPage() {
           className="rounded-xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm"
         >
           <h2 className="mb-4 text-xl font-medium">Contact</h2>
-          <p className="text-muted-foreground">
+          <p className="mb-4 text-muted-foreground">
             Questions, feedback, or partnership inquiries:{" "}
             <a href="mailto:hello@kikuai.dev" className="text-primary hover:underline">
               hello@kikuai.dev
             </a>
           </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/kikuai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border/50 bg-secondary/50 px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
+          </div>
         </motion.div>
       </main>
 

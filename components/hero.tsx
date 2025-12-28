@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Github } from "lucide-react"
 
 function useCountUp(end: number, duration = 1500, inView: boolean) {
   const [count, setCount] = useState(0)
@@ -84,21 +83,13 @@ export function Hero() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="mx-auto max-w-2xl"
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-secondary/50 px-3 py-1.5 text-xs text-muted-foreground"
-        >
-          <Github className="h-3.5 w-3.5" />
-          <span>Open Source on GitHub</span>
-        </motion.div>
-
         <h1 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl">
           Turn messy inputs into <span className="text-primary">usable data</span>
         </h1>
         <p className="mx-auto mt-5 max-w-md text-sm text-muted-foreground/70 md:text-base">
-          Developer APIs for chart extraction, spam detection, and data processing. Self-serve, usage-based pricing.
+          AI-powered APIs for data extraction and processing.
+          <br />
+          Pay only for what you use.
         </p>
       </motion.div>
 
@@ -109,10 +100,10 @@ export function Hero() {
         transition={{ duration: 0.6, delay: 0.3 }}
         className="mx-auto mt-10 flex max-w-xl flex-wrap items-center justify-center gap-8 md:gap-12"
       >
-        <AnimatedStat numericValue={90} prefix=">" suffix="%" label="Chart accuracy" inView={inView} />
-        <AnimatedStat numericValue={100} prefix="<" suffix="ms" label="Avg latency" inView={inView} />
-        <AnimatedStat numericValue={5} suffix="+" label="PII types" inView={inView} />
-        <AnimatedStat value="24/7" label="Pattern learning" inView={inView} />
+        <AnimatedStat numericValue={4} label="APIs available" inView={inView} />
+        <AnimatedStat numericValue={100} prefix="<" suffix="ms" label="Avg response" inView={inView} />
+        <AnimatedStat value="24/7" label="Monitoring" inView={inView} />
+        <AnimatedStat value="$0" label="To start" inView={inView} />
       </motion.div>
 
       <motion.p

@@ -120,19 +120,22 @@ export function ProductTiles() {
             </div>
 
             <div className="mb-6 flex items-center gap-3 rounded-xl bg-secondary/50 p-4">
-              {/* Before: Chat/log lines - reduced to 3 items */}
-              <div className="flex w-24 flex-shrink-0 flex-col gap-1.5 overflow-hidden rounded-lg border border-border bg-background/50 p-2">
-                <div className="flex items-start gap-1.5">
-                  <span className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
-                  <span className="font-mono text-[9px] text-muted-foreground leading-tight">Buy now!</span>
+              <div className="flex w-28 flex-shrink-0 flex-col gap-1.5 overflow-hidden rounded-lg border border-border bg-background/50 p-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
+                  <span className="font-mono text-[9px] text-muted-foreground truncate">Buy now! 🔥</span>
                 </div>
-                <div className="flex items-start gap-1.5">
-                  <span className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400/70" />
-                  <span className="font-mono text-[9px] text-foreground/60 leading-tight">Hello team</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
+                  <span className="font-mono text-[9px] text-muted-foreground truncate">Free click here!</span>
                 </div>
-                <div className="flex items-start gap-1.5">
-                  <span className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
-                  <span className="font-mono text-[9px] text-muted-foreground leading-tight">Free gift!</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
+                  <span className="font-mono text-[9px] text-muted-foreground truncate">bit.ly/free123</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400/70" />
+                  <span className="font-mono text-[9px] text-muted-foreground truncate">You won $10!</span>
                 </div>
               </div>
 
